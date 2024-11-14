@@ -111,24 +111,31 @@ Armstrong Number Check:-
 #!/bin/bash
 
 # Armstrong Number Check
+#!/bin/bash
+
+# Function to check if a number is an Armstrong number
 is_armstrong() {
-  number=$1
+  num=$1
   sum=0
-  temp=$number
-  length=${#number}
-  
-  while [ $temp -gt 0 ]; do
-    digit=$(( temp % 10 ))
-    sum=$(( sum + digit ** length ))
-    temp=$(( temp / 10 ))
+  temp=$num
+  n=${#num}  # Number of digits
+
+  # Calculate the sum of each digit raised to the power of the number of digits
+  while [ $temp -gt 0 ]
+  do
+    digit=$((temp % 10))                 # Extract the last digit
+    sum=$((sum + digit ** n))             # Add digit^n to sum
+    temp=$((temp / 10))                   # Remove the last digit
   done
-  
-  if [ $sum -eq $number ]; then
-    echo "$number is an Armstrong number"
+
+  # Check if the calculated sum matches the original number
+  if [ $sum -eq $num ]; then
+    echo "$num is an Armstrong number."
   else
-    echo "$number is not an Armstrong number"
+    echo "$num is not an Armstrong number."
   fi
 }
 
-is_armstrong 153
-is_armstrong 123
+# Input number
+read -p "Enter a number: " number
+is_armstrong "$number"
